@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Client Chat WebSocket</title>
+    <script type="module">
+        import { io } from "https://cdn.socket.io/4.7.2/socket.io.esm.min.js";
+
+        const socket = io("http://localhost:8000", {
+            path: "/sockets",
+        });
+
+        console.log(socket.id); // undefined
+
+        socket.on("connect", () => {
+            console.log(socket.id); // "G5p5..."
+        });
+    </script>
+    <!-- <script>
+        let socket;
+
+        function connectToChat(user_id) {
+            socket = new WebSocket('ws://localhost:8000/v1/tchat/chat/ws?user_id='+user_id);
+
+            socket.onopen = function(event) {
+                console.log('Connected to chat');
+                socket.send(JSON.stringify({"user_id": user_id}));
+            };
+
+            socket.onmessage = function(event) {
+                const message = event.data;
+                // Afficher le message reçu dans la zone de chat
+                displayMessage(message);
+            };
+
+            socket.onclose = function(event) {
+                console.log('Disconnected from chat');
+            };
+        }
+
+        function sendMessage(user_id, message) {
+            socket.send(JSON.stringify({"user-id": user_id, "message": message}));
+        }
+
+        function disconnectFromChat(user_id) {
+            socket.send(JSON.stringify({"user-id": user_id}));
+            socket.send("close");
+            socket.close();
+        }
+
+        function displayMessage(message) {
+            const chatMessages = document.getElementById('chat-messages');
+            chatMessages.innerHTML += `<div>${message}</div>`;
+        }
+
+        function sendChatMessage() {
+            const user_id = document.getElementById('user-id').value;
+            const message = document.getElementById('message').value;
+            sendMessage(user_id, message);
+        }
+
+        function connectChat() {
+            const user_id = document.getElementById('user-id').value;
+            connectToChat(user_id);
+        }
+
+        function disconnectChat() {
+            const user_id = document.getElementById('user-id').value;
+            disconnectFromChat(user_id);
+        }
+    </script> -->
+</head>
+
+<body>
+    <h1>Client Chat WebSocket</h1>
+    <label for="user-id">User ID:</label>
+    <input type="text" id="user-id"><br><br>
+
+    <button onclick="connectChat()">Connect to Chat</button>
+    <button onclick="disconnectChat()">Disconnect from Chat</button><br><br>
+
+    <label for="message">Message:</label>
+    <input type="text" id="message">
+    <button onclick="sendChatMessage()">Send Message</button><br><br>
+
+    <div id="chat-messages"></div>
+</body>
+
+</html>
