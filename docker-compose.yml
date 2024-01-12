@@ -1,9 +1,19 @@
 version: '3'
 
 services:
+  rethinkdb:
+    image: rethinkdb:latest
+    restart: always
+    ports:
+      - 28015:28015
+    volumes:
+      - ./data:/data
+
   app-fastapi:
     build: .
     command: python main.py
+    depends_on:
+      - rethinkdb
     ports:
       - "8888:3000"
     networks:
