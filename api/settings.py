@@ -1,10 +1,12 @@
-from decouple import config
+from fastapi.confguration import Configuration
+
+config = Configuration.load_config("config.prod.yaml")
 
 class Envs:
     APP_NAME=config('DEBUG', default="API TCHAT")
 
-    DB_HOST=config('DB_HOST')
-    DB_PORT=config('DB_PORT')
-    DB_USER=config('DB_USER')
-    DB_PASSWORD=config('DB_PASSWORD')
-    DB_NAME=config('DB_NAME')
+    DB_HOST='127.0.0.1'
+    DB_PORT='28025'
+    DB_USER='root'
+    DB_PASSWORD='root'
+    DB_NAME='genikuiz'
