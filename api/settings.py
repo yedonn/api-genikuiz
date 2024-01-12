@@ -1,6 +1,4 @@
-from fastapi.confguration import Configuration
-
-config = Configuration.load_config("config.prod.yaml")
+from decouple import config
 
 class Envs:
     APP_NAME=config('DEBUG', default="API TCHAT")
