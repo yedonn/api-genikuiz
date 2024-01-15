@@ -5,19 +5,23 @@ services:
     image: rethinkdb:latest
     restart: always
     ports:
-      - 28026:28015
+      - 28025:28015
     volumes:
       - ./data:/data
     networks:
       - genikuiz
 
-  app-fastapi:
+  web:
     build: .
-    command: uvicorn main:app --host 0.0.0.0 --port 80
+    command: sh -c "uvicorn main:app --reload --host=0.0.0.0 --port=8000"
+    env_file:
+      - .env
     depends_on:
       - rethinkdb
     ports:
-      - "3030:80"
+      - "8000:8000"
+    volumes:
+      - .:/app
     networks:
       - genikuiz
 
