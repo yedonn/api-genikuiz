@@ -30,8 +30,8 @@ async def update_party_action(req: Request):
         else:
             await sio_server.emit("action_change_done")
         # Traitement des résultats et renvoi de la réponse
-        if result and len(result._responses) > 0:
-            parties = result._responses[0].r
+        if result and len(result) > 0:
+            parties = result[0]
             return parties
         else:
             return []
@@ -45,8 +45,8 @@ async def get_party_action(req: Request):
         result = list_records('party_action')
 
         # Traitement des résultats et renvoi de la réponse
-        if result and len(result._responses) > 0:
-            parties = result._responses[0].r
+        if result and len(result) > 0:
+            parties = result[0]
             return parties
         else:
             return []

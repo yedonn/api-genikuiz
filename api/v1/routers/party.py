@@ -39,8 +39,8 @@ async def get_all_parties(req: Request):
             result = list_filter_records('party',{'start':request_body['start'], 'done':request_body['done']})
 
         # Traitement des résultats et renvoi de la réponse
-        if result and len(result._responses) > 0:
-            parties = result._responses[0].r
+        if result and len(result) > 0:
+            parties = result[0]
             return parties
         else:
             return []
@@ -54,8 +54,8 @@ async def get_party(req: Request):
         result = list_filter_records('party',{'start':True, 'done':False})
 
         # Traitement des résultats et renvoi de la réponse
-        if result and len(result._responses) > 0:
-            parties = result._responses[0].r
+        if result and len(result) > 0:
+            parties = result[0]
             return parties
         else:
             return []
@@ -69,8 +69,8 @@ async def get_done_party(req: Request):
         result = list_filter_records('party',{'start':True, 'done':True})
 
         # Traitement des résultats et renvoi de la réponse
-        if result and len(result._responses) > 0:
-            parties = result._responses[0].r
+        if result and len(result) > 0:
+            parties = result[0]
             return parties
         else:
             return []
@@ -85,8 +85,8 @@ async def get_done_party(req: Request):
         result = list_filter_records('party',{'id':request_body['id']})
 
         # Traitement des résultats et renvoi de la réponse
-        if result and len(result._responses) > 0:
-            parties = result._responses[0].r
+        if result and len(result) > 0:
+            parties = result[0]
             return parties
         else:
             return []
@@ -104,8 +104,8 @@ async def update_party(req: Request):
         result = update_record('party',{'id':request_body['id']},request_body)
 
         # Traitement des résultats et renvoi de la réponse
-        if result and len(result._responses) > 0:
-            parties = result._responses[0].r
+        if result and len(result) > 0:
+            parties = result[0]
             return parties
         else:
             return []

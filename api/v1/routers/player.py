@@ -34,8 +34,8 @@ async def get_player(req: Request):
         result = list_filter_records('player',{'login':request_body['login']})
 
         # Traitement des résultats et renvoi de la réponse
-        if result and len(result._responses) > 0:
-            parties = result._responses[0].r
+        if result and len(result) > 0:
+            parties = result[0]
             return parties
         else:
             return []
