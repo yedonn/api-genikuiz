@@ -35,7 +35,7 @@ async def get_player(req: Request):
 
         # Traitement des résultats et renvoi de la réponse
         if result and len(result) > 0:
-            parties = result[0]
+            parties = result
             return parties
         else:
             return []

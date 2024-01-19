@@ -70,7 +70,7 @@ async def get_done_party(req: Request):
 
         # Traitement des résultats et renvoi de la réponse
         if result and len(result) > 0:
-            parties = result[0]
+            parties = result
             return parties
         else:
             return []
@@ -86,7 +86,7 @@ async def get_done_party(req: Request):
 
         # Traitement des résultats et renvoi de la réponse
         if result and len(result) > 0:
-            parties = result[0]
+            parties = result
             return parties
         else:
             return []
@@ -105,7 +105,7 @@ async def update_party(req: Request):
 
         # Traitement des résultats et renvoi de la réponse
         if result and len(result) > 0:
-            parties = result[0]
+            parties = result
             return parties
         else:
             return []
